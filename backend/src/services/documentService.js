@@ -45,7 +45,13 @@ function resolveDownload(id) {
     error.status = 404;
     throw error;
   }
-  const filePath = repository.buildFilePath(metadata.filename);
+  const filePath = repository.buildFilePath(path.basename(metadata.filename));
+  // Garante que o caminho resolvido permanece dentro do diretório de armazenamento.
+  if (!filePath.startsWith(repository.STORAGE_DIR + path.sep) && filePath !== repository.STORAGE_DIR) {
+    const error = new Error('Acesso negado');
+    error.status = 403;
+    throw error;
+  }
   return { metadata, filePath };
 }
 
