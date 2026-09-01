@@ -39,11 +39,11 @@ export default function UploadComponent({ onUploadSuccess }) {
   };
 
   return (
-    <section style={{ marginBottom: '2rem', padding: '1rem', border: '1px solid #ccc', borderRadius: '8px' }}>
-      <h2>Enviar Novo Documento</h2>
-      <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1rem', maxWidth: '400px' }}>
+    <section className="mb-8 rounded-lg border border-gray-200 bg-white p-4 shadow-sm sm:p-6">
+      <h2 className="mb-4 text-lg font-semibold text-gray-900">Enviar Novo Documento</h2>
+      <form onSubmit={handleSubmit} className="flex max-w-md flex-col gap-4">
         <div>
-          <label htmlFor="file-input" style={{ display: 'block', marginBottom: '0.5rem' }}>
+          <label htmlFor="file-input" className="mb-2 block text-sm font-medium text-gray-700">
             Arquivo:
           </label>
           <input
@@ -51,11 +51,12 @@ export default function UploadComponent({ onUploadSuccess }) {
             type="file"
             onChange={(e) => setFile(e.target.files[0] || null)}
             disabled={uploading}
+            className="block w-full text-sm text-gray-700 file:mr-4 file:rounded-md file:border-0 file:bg-blue-50 file:px-4 file:py-2 file:text-sm file:font-medium file:text-blue-700 hover:file:bg-blue-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60"
           />
         </div>
 
         <div>
-          <label htmlFor="owner-input" style={{ display: 'block', marginBottom: '0.5rem' }}>
+          <label htmlFor="owner-input" className="mb-2 block text-sm font-medium text-gray-700">
             Proprietário (opcional):
           </label>
           <input
@@ -65,17 +66,23 @@ export default function UploadComponent({ onUploadSuccess }) {
             value={owner}
             onChange={(e) => setOwner(e.target.value)}
             disabled={uploading}
-            style={{ width: '100%', padding: '0.5rem' }}
+            className="w-full rounded-md border border-gray-300 px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:bg-gray-100"
           />
         </div>
 
-        <button type="submit" disabled={uploading} style={{ padding: '0.5rem 1rem', cursor: 'pointer' }}>
+        <button
+          type="submit"
+          disabled={uploading}
+          className="inline-flex items-center justify-center rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60"
+        >
           {uploading ? 'Enviando...' : 'Enviar Documento'}
         </button>
       </form>
 
       {message.text && (
-        <p style={{ marginTop: '1rem', color: message.type === 'error' ? 'red' : 'green' }}>
+        <p
+          className={`mt-4 text-sm ${message.type === 'error' ? 'text-red-600' : 'text-green-600'}`}
+        >
           {message.text}
         </p>
       )}

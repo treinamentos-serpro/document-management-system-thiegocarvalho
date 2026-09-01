@@ -30,8 +30,10 @@ export default function App() {
   };
 
   return (
-    <main style={{ fontFamily: 'system-ui, sans-serif', padding: '2rem', maxWidth: '900px', margin: '0 auto' }}>
-      <h1>Document Management System</h1>
+    <main className="mx-auto max-w-4xl px-4 py-8 font-sans sm:px-6 lg:px-8">
+      <h1 className="mb-6 text-2xl font-bold text-gray-900 sm:text-3xl">
+        Document Management System
+      </h1>
       <UploadComponent onUploadSuccess={handleUploadSuccess} />
       <DocumentList documents={documents} loading={loading} error={error} />
     </main>

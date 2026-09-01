@@ -18,11 +18,15 @@ export default function DownloadButton({ documentId, filename }) {
   };
 
   return (
-    <div style={{ display: 'inline-block' }}>
-      <button onClick={handleDownload} disabled={downloading}>
+    <div className="inline-block">
+      <button
+        onClick={handleDownload}
+        disabled={downloading}
+        className="inline-flex items-center justify-center rounded-md border border-gray-300 bg-white px-3 py-1.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60"
+      >
         {downloading ? 'Baixando...' : 'Baixar'}
       </button>
-      {error && <span style={{ color: 'red', marginLeft: '0.5rem', fontSize: '0.875rem' }}>{error}</span>}
+      {error && <span className="ml-2 text-xs font-medium text-red-600">{error}</span>}
     </div>
   );
 }
