@@ -5,7 +5,7 @@
 const path = require('path');
 const fs = require('fs');
 
-const STORAGE_DIR = path.resolve(__dirname, '../../storage');
+const STORAGE_DIR = process.env.STORAGE_DIR || path.resolve(__dirname, '../../storage');
 
 // Garante que o diretório de armazenamento existe ao carregar o módulo.
 if (!fs.existsSync(STORAGE_DIR)) {

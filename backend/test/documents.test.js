@@ -13,7 +13,6 @@ const app = require('../src/app');
 
 // Helper para simular requisições HTTP sem abrir um servidor de verdade.
 const { createServer } = require('http');
-const { Readable } = require('stream');
 
 function request(method, url, options = {}) {
   return new Promise((resolve, reject) => {

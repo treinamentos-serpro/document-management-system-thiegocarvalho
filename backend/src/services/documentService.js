@@ -2,6 +2,7 @@
 // Cada função tem responsabilidade única e delega persistência ao repositório.
 
 const { randomUUID } = require('crypto');
+const path = require('path');
 const repository = require('../repositories/documentRepository');
 
 /**
@@ -13,7 +14,8 @@ const repository = require('../repositories/documentRepository');
 function registerDocument(file, owner) {
   const metadata = {
     id: randomUUID(),
-    originalName: file.originalname,
+    // path.basename evita que nomes com separadores de diretório causem path traversal.
+    originalName: path.basename(file.originalname),
     filename: file.filename,
     size: file.size,
     owner,
